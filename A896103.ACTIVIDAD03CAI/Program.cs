@@ -9,9 +9,8 @@ namespace A896103.ACTIVIDAD03CAI
 {
     class Program
     {
-
-        static Dictionary<int, Asiento> asientos = new Dictionary<int, Asiento>();
         static Dictionary<int, PlanDeCuentas> plan = new Dictionary<int, PlanDeCuentas>();
+        static Dictionary<int, Asiento> asientos = new Dictionary<int, Asiento>();
 
         /*A partir de los asientos ingresados por el usuario, una aplicación debe generar/actualizar un
                archivo de texto llamado “Diario.txt” con el siguiente formato por línea:
@@ -66,6 +65,7 @@ namespace A896103.ACTIVIDAD03CAI
             Console.ReadKey(intercept: true);
 
         }
+
         private static void LeerPlanCuentas()
         {
 
@@ -89,7 +89,7 @@ namespace A896103.ACTIVIDAD03CAI
                     while (!reader.EndOfStream)
                     {
                         var linea = reader.ReadLine();
-                        var pl =PlanDeCuentas.Parse(linea);
+                        var pl = PlanDeCuentas.Parse(linea);
                         if (plan.ContainsKey(pl.CodigoCuenta))
                         {
                             plan[pl.CodigoCuenta] = pl;
@@ -101,7 +101,6 @@ namespace A896103.ACTIVIDAD03CAI
 
                     }
                 }
-
             }
         }
 

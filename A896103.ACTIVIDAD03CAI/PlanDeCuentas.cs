@@ -21,6 +21,7 @@ namespace A896103.ACTIVIDAD03CAI
         public string NombreCuenta { get; }
         public string Tipo { get; }
 
+      
         internal static PlanDeCuentas Parse(string linea)
         {
             var datos = linea.Split('|');

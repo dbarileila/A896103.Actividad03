@@ -77,9 +77,13 @@ namespace A896103.ACTIVIDAD03CAI
                 ok = true;
             }
 
-            
-            
-                int codigo = 0;
+            bool seguir = true;
+            int codigo = 0;
+            decimal debe = 0.0m;
+            decimal haber = 0.0m;
+            do
+            {
+
                 ok = false;
                 while (!ok)
                 {
@@ -100,68 +104,80 @@ namespace A896103.ACTIVIDAD03CAI
                         continue;
                     }
 
+
                     ok = true;
                 }
-
-                decimal debe = 0.0m;
+                
                 ok = false;
                 while (!ok)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Si el código de cuenta ingresado tiene saldo deudor ingrese en el DEBE el importe, sino ingrese cero (0).");
-                    Console.WriteLine(" --> Activo (+).");
-                    Console.WriteLine(" --> Pasivo (-).");
-                    Console.WriteLine(" --> PN     (-).");
-                    Console.WriteLine();
-                    Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
-
-                    var ingreso = Console.ReadLine();
-                    if (!decimal.TryParse(ingreso, out debe))
+                    Console.WriteLine("Si la cuenta posee saldo deudor ingrese D, si es acreedor ingrese H? D/H: ");
+                    var tecla1 = Console.ReadKey(intercept: true);
+                    if (tecla1.Key == ConsoleKey.D)
                     {
-                        Console.WriteLine("El importe debe ser númerico.");
-                        continue;
-                    }
+                        Console.WriteLine();
+                        Console.WriteLine("DEBE");
+                        Console.WriteLine(" --> Activo (+).");
+                        Console.WriteLine(" --> Pasivo (-).");
+                        Console.WriteLine(" --> PN     (-).");
+                        Console.WriteLine();
+                        Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
 
-                    if (debe < 0)
+                        Console.Write("Importe: $ ");
+                        var ingreso = Console.ReadLine();
+                        if (!decimal.TryParse(ingreso, out debe))
+                        {
+                            Console.WriteLine("El importe debe ser númerico.");
+                            continue;
+                        }
+
+                        if (debe < 0)
+                        {
+                            Console.WriteLine("El importe debe ser mayor o igual a cero.");
+                            continue;
+                        }
+
+                    }
+                    else if(tecla1.Key == ConsoleKey.H)
                     {
-                        Console.WriteLine("El importe debe ser mayor o igual a cero.");
-                        continue;
-                    }
+                        Console.WriteLine();
+                        Console.WriteLine("HABER");
+                        Console.WriteLine(" --> Activo (-).");
+                        Console.WriteLine(" --> Pasivo (+).");
+                        Console.WriteLine(" --> PN     (+).");
+                        Console.WriteLine();
+                        Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
+                        Console.Write("Importe: $ ");
+                        var ingreso = Console.ReadLine();
+                        if (!decimal.TryParse(ingreso, out haber))
+                        {
+                            Console.WriteLine("El importe debe ser númerico.");
+                            continue;
+                        }
 
+                        if (haber < 0)
+                        {
+                            Console.WriteLine("El importe debe ser mayor o igual a cero.");
+                            continue;
+                        }
+
+                    }
                     ok = true;
                 }
 
-                decimal haber = 0.0m;
-                ok = false;
-                while (!ok)
+               
+                Console.WriteLine("Seleccione 'I' para cargar una otra cuenta y respetar la igualdad DEBE = HABER o cualquier tecla para seguir.");
+                var tecla = Console.ReadKey(intercept: true);
+                seguir = tecla.Key == ConsoleKey.I;
+                if (debe != haber)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Si el código de cuenta ingresado tiene saldo acreedor ingrese en el HABER el importe, sino ingrese cero (0).");
-                    Console.WriteLine(" --> Activo (-).");
-                    Console.WriteLine(" --> Pasivo (+).");
-                    Console.WriteLine(" --> PN     (+).");
-                    Console.WriteLine();
-                    Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
-
-                    var ingreso = Console.ReadLine();
-                    if (!decimal.TryParse(ingreso, out haber))
-                    {
-                        Console.WriteLine("El importe debe ser númerico.");
-                        continue;
-                    }
-
-                    if (haber < 0)
-                    {
-                        Console.WriteLine("El importe debe ser mayor o igual a cero.");
-                        continue;
-                    }
-
-                    ok = true;
+                    Console.WriteLine("No se respeta la igualdad contable DEBE = HABER.");
+                    continue;
                 }
-                return new Asiento(asiento, fecha, codigo, debe, haber);
 
+            } while (seguir);
 
-            
+            return new Asiento(asiento, fecha, codigo, debe, haber);
         }
 
     }
