@@ -24,25 +24,32 @@ namespace A896103.ACTIVIDAD03CAI
 
             while (true)
             {
-                Console.WriteLine("a. Ingreso.");
-                Console.WriteLine("b. Generar.");
-                Console.WriteLine("c. Actualizar.");
-                Console.WriteLine("d. Terminar.");
+                Console.WriteLine("Bienvenido. Seleccione la opción que desea realizar:");
+                Console.WriteLine();
+                Console.WriteLine("a. Visualizar el plan de cuentas.");
+                Console.WriteLine("b. Ingreso de nuevo asiento.");
+                Console.WriteLine("c. Generar (guardar cambios realizados en Diario.txt).");
+                Console.WriteLine("d. Actualizar.");
+                Console.WriteLine("e. Terminar.");
 
                 var tecla = Console.ReadKey(intercept: true);
                 if (tecla.Key == ConsoleKey.A)
                 {
-                    IngresoNuevoAsiento();
+                    LeerPlanCuentas();
                 }
                 else if (tecla.Key == ConsoleKey.B)
                 {
-                    GenerarOActualizar();
+                    IngresoNuevoAsiento();
                 }
                 else if (tecla.Key == ConsoleKey.C)
                 {
                     GenerarOActualizar();
                 }
                 else if (tecla.Key == ConsoleKey.D)
+                {
+                    GenerarOActualizar();
+                }
+                else if (tecla.Key == ConsoleKey.E)
                 {
                     break;
                 }
@@ -57,15 +64,16 @@ namespace A896103.ACTIVIDAD03CAI
 
             Console.WriteLine("El ejercicio ha finalizado.");
             Console.ReadKey(intercept: true);
-        }
 
+        }
         private static void LeerPlanCuentas()
         {
 
             string ruta;
             do
             {
-                Console.WriteLine("ingrese la ruta para PlandeCuentas.txt: ");
+                Console.WriteLine();
+                Console.WriteLine("Ingrese la ruta para PlandeCuentas.txt: ");
                 ruta = Console.ReadLine();
                 if (!File.Exists(ruta))
                 {
@@ -81,14 +89,14 @@ namespace A896103.ACTIVIDAD03CAI
                     while (!reader.EndOfStream)
                     {
                         var linea = reader.ReadLine();
-                        var codigo = PlanDeCuentas.Parse(linea);
-                        if (plan.ContainsKey(codigo.CodigoCuenta))
+                        var pl =PlanDeCuentas.Parse(linea);
+                        if (plan.ContainsKey(pl.CodigoCuenta))
                         {
-                            plan[codigo.CodigoCuenta] = codigo;
+                            plan[pl.CodigoCuenta] = pl;
                         }
                         else
                         {
-                            Console.WriteLine($"{codigo.CodigoCuenta} : {codigo.NombreCuenta}");
+                            Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
                         }
 
                     }

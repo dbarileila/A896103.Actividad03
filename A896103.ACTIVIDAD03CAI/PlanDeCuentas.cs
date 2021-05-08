@@ -10,7 +10,6 @@ namespace A896103.ACTIVIDAD03CAI
 {
     internal class PlanDeCuentas
     {
-
         private PlanDeCuentas(int codigo, string nombrec, string tipo)
         {
             CodigoCuenta = codigo;
@@ -22,13 +21,10 @@ namespace A896103.ACTIVIDAD03CAI
         public string NombreCuenta { get; }
         public string Tipo { get; }
 
-
         internal static PlanDeCuentas Parse(string linea)
         {
             var datos = linea.Split('|');
-            return new PlanDeCuentas(codigo: int.Parse(datos[0]), nombrec: (datos[1]), tipo: (datos[2]));
-
+            return new PlanDeCuentas(codigo: int.Parse(datos[0]), nombrec: datos[1], tipo: datos[2]);
         }
-
     }
 }
