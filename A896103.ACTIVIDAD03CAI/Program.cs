@@ -27,14 +27,13 @@ namespace A896103.ACTIVIDAD03CAI
                 Console.WriteLine();
                 Console.WriteLine("a. Visualizar el plan de cuentas.");
                 Console.WriteLine("b. Ingreso de nuevo asiento.");
-                Console.WriteLine("c. Generar (guardar cambios realizados en Diario.txt).");
-                Console.WriteLine("d. Actualizar.");
-                Console.WriteLine("e. Terminar.");
+                Console.WriteLine("c. Generar/Actualizar (guardar cambios realizados en Diario.txt).");
+                Console.WriteLine("d. Terminar.");
 
                 var tecla = Console.ReadKey(intercept: true);
                 if (tecla.Key == ConsoleKey.A)
                 {
-                    LeerPlanCuentas();
+                    //LeerPlanCuentas();
                 }
                 else if (tecla.Key == ConsoleKey.B)
                 {
@@ -45,10 +44,6 @@ namespace A896103.ACTIVIDAD03CAI
                     GenerarOActualizar();
                 }
                 else if (tecla.Key == ConsoleKey.D)
-                {
-                    GenerarOActualizar();
-                }
-                else if (tecla.Key == ConsoleKey.E)
                 {
                     break;
                 }
@@ -66,44 +61,50 @@ namespace A896103.ACTIVIDAD03CAI
 
         }
 
-        private static void LeerPlanCuentas()
-        {
+        //private static void LeerPlanCuentas()
+        //{
 
-            string ruta;
-            do
-            {
-                Console.WriteLine();
-                Console.WriteLine("Ingrese la ruta para PlandeCuentas.txt: ");
-                ruta = Console.ReadLine();
-                if (!File.Exists(ruta))
-                {
-                    Console.WriteLine("El archivo no exite.");
-                }
+        //    string ruta;
+        //    do
+        //    {
+        //        Console.WriteLine();
+        //        Console.WriteLine("Ingrese la ruta para PlandeCuentas.txt: ");
+        //        ruta = Console.ReadLine();
+        //        if (!File.Exists(ruta))
+        //        {
+        //            Console.WriteLine("El archivo no exite.");
+        //        }
 
-            } while (!File.Exists(ruta));
+        //    } while (!File.Exists(ruta));
 
-            using (var archivo = File.OpenRead(ruta))
-            {
-                using (var reader = new StreamReader(archivo))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        var linea = reader.ReadLine();
-                        var pl = PlanDeCuentas.Parse(linea);
-                        if (plan.ContainsKey(pl.CodigoCuenta))
-                        {
-                            plan[pl.CodigoCuenta] = pl;
-                        }
-                        else
-                        {
-                            Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
-                        }
+        //    int cuentas = 0;
+        //    int codigos = 0;
+        //    using (var archivo = File.OpenRead(ruta))
+        //    {
+        //        using (var reader = new StreamReader(archivo))
+        //        {
+        //            while (!reader.EndOfStream)
+        //            {
+        //                var linea = reader.ReadLine();
+        //                var pl = PlanDeCuentas.Parse(linea);
+        //                if (plan.ContainsKey(pl.CodigoCuenta))
+        //                {
+        //                    plan[pl.CodigoCuenta] = pl;
+        //                    codigos++;
+        //                }
+        //                else
+        //                {
+        //                    plan.Add(pl.CodigoCuenta, pl);
+        //                    cuentas++;
+        //                    Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
+        //                }
 
-                    }
-                }
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //}
 
+      
         private static void GenerarOActualizar()
         {
             Console.WriteLine("Ingrese la ruta del Diario.txt para generar el asiento en el archivo.");

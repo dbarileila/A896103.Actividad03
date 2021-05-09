@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 
 namespace A896103.ACTIVIDAD03CAI
@@ -21,7 +18,7 @@ namespace A896103.ACTIVIDAD03CAI
         public string NombreCuenta { get; }
         public string Tipo { get; }
 
-      
+
         internal static PlanDeCuentas Parse(string linea)
         {
             var datos = linea.Split('|');
