@@ -74,6 +74,7 @@ namespace A896103.ACTIVIDAD03CAI
                 Console.WriteLine("Ingrese la ruta para PlandeCuentas.txt: ");
                 Console.WriteLine();
                 ruta = Console.ReadLine();
+                Console.WriteLine();
                 if (!File.Exists(ruta))
                 {
                     Console.WriteLine("El archivo no exite.");
@@ -98,6 +99,7 @@ namespace A896103.ACTIVIDAD03CAI
                             var pl = PlanDeCuentas.Parse(linea);
                             plan.Add(pl);
                             Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
+                            
                         }
 
                     }
@@ -105,6 +107,7 @@ namespace A896103.ACTIVIDAD03CAI
                 }
             }
             Console.WriteLine();
+            Console.WriteLine("Aprete ENTER para volver al menú principal.");
             Console.ReadKey(intercept: true);
 
 
