@@ -9,7 +9,8 @@ namespace A896103.ACTIVIDAD03CAI
 {
     class Program
     {
-        static Dictionary<int, PlanDeCuentas> plan = new Dictionary<int, PlanDeCuentas>();
+
+        static List<PlanDeCuentas> plan = new List<PlanDeCuentas>();
         static Dictionary<int, Asiento> asientos = new Dictionary<int, Asiento>();
 
         /*A partir de los asientos ingresados por el usuario, una aplicación debe generar/actualizar un
@@ -20,9 +21,9 @@ namespace A896103.ACTIVIDAD03CAI
            */
         static void Main(string[] args)
         {
-
             while (true)
             {
+               
                 Console.WriteLine("Bienvenido. Seleccione la opción que desea realizar:");
                 Console.WriteLine();
                 Console.WriteLine("a. Visualizar el plan de cuentas.");
@@ -33,7 +34,8 @@ namespace A896103.ACTIVIDAD03CAI
                 var tecla = Console.ReadKey(intercept: true);
                 if (tecla.Key == ConsoleKey.A)
                 {
-                    //LeerPlanCuentas();
+                    ConsultarPlanCuentas();
+
                 }
                 else if (tecla.Key == ConsoleKey.B)
                 {
@@ -50,8 +52,9 @@ namespace A896103.ACTIVIDAD03CAI
                 else
                 {
                     Console.WriteLine("No es una opción en la lista.");
+                   
                 }
-
+              
                 Console.WriteLine();
 
             }
@@ -61,57 +64,59 @@ namespace A896103.ACTIVIDAD03CAI
 
         }
 
-        //private static void LeerPlanCuentas()
-        //{
+        private static void ConsultarPlanCuentas()
+        {
 
-        //    string ruta;
-        //    do
-        //    {
-        //        Console.WriteLine();
-        //        Console.WriteLine("Ingrese la ruta para PlandeCuentas.txt: ");
-        //        ruta = Console.ReadLine();
-        //        if (!File.Exists(ruta))
-        //        {
-        //            Console.WriteLine("El archivo no exite.");
-        //        }
+            string ruta;
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("Ingrese la ruta para PlandeCuentas.txt: ");
+                Console.WriteLine();
+                ruta = Console.ReadLine();
+                if (!File.Exists(ruta))
+                {
+                    Console.WriteLine("El archivo no exite.");
+                }
 
-        //    } while (!File.Exists(ruta));
+            } while (!File.Exists(ruta));
 
-        //    int cuentas = 0;
-        //    int codigos = 0;
-        //    using (var archivo = File.OpenRead(ruta))
-        //    {
-        //        using (var reader = new StreamReader(archivo))
-        //        {
-        //            while (!reader.EndOfStream)
-        //            {
-        //                var linea = reader.ReadLine();
-        //                var pl = PlanDeCuentas.Parse(linea);
-        //                if (plan.ContainsKey(pl.CodigoCuenta))
-        //                {
-        //                    plan[pl.CodigoCuenta] = pl;
-        //                    codigos++;
-        //                }
-        //                else
-        //                {
-        //                    plan.Add(pl.CodigoCuenta, pl);
-        //                    cuentas++;
-        //                    Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
-        //                }
 
-        //            }
-        //        }
-        //    }
-        //}
+            using (var archivo = File.OpenRead(ruta))
+            {
+                using (var reader = new StreamReader(archivo))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var linea = reader.ReadLine();
+                        var pl = PlanDeCuentas.Parse(linea);
+                        if (linea == "Codigo|Nombre|Tipo")
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            plan.Add(pl);
+                            Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
+                        }
 
-      
+                    }
+                    reader.Close();
+                }
+            }
+            Console.WriteLine();
+            Console.ReadKey(intercept: true);
+
+
+        }
         private static void GenerarOActualizar()
         {
-            Console.WriteLine("Ingrese la ruta del Diario.txt para generar el asiento en el archivo.");
-            string ruta = Console.ReadLine();
+
+            Console.WriteLine("Se cargaran los asientos en el archivo Diario.txt");
+            string ruta = "Diario.txt";
             if (File.Exists(ruta))
             {
-                Console.WriteLine("El archivo ya existe. ¿Desea sobreescribirlo? [S/N]");
+                Console.WriteLine("¿Desea sobreescribirlo? [S/N]");
                 if (Console.ReadKey(intercept: true).Key == ConsoleKey.S)
                 {
                     File.Delete(ruta);
@@ -127,9 +132,10 @@ namespace A896103.ACTIVIDAD03CAI
                 }
             }
 
-            Console.WriteLine("El asiento se ha cargado exitosamente.");
+            Console.WriteLine("El asiento se ha cargado exitosamente en el archivo Diario.txt");
 
         }
+
 
         private static void IngresoNuevoAsiento()
         {

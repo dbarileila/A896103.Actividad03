@@ -10,20 +10,21 @@ namespace A896103.ACTIVIDAD03CAI
 {
     internal class Asiento
     {
-     
         private Asiento(int nro, DateTime fecha, int codigo, decimal debe, decimal haber)
         {
             NroAsiento = nro;
             Fecha = fecha;
             CodigoCuenta = codigo;
             Debe = debe;
-            Haber = haber;
+            Haber = debe;
+        
         }
         public int NroAsiento { get; }
         public DateTime Fecha { get; }
         public int CodigoCuenta { get; }
-        public decimal Debe { get; }
-        public decimal Haber { get; }
+        public decimal Debe { get; set; }
+        public decimal Haber { get; set; }
+ 
 
         internal static Asiento Ingreso()
         {
@@ -130,12 +131,12 @@ namespace A896103.ACTIVIDAD03CAI
                             Console.WriteLine("El importe debe ser númerico.");
                             continue;
                         }
-
-                        if (debe < 0)
+                        else if (debe < 0)
                         {
                             Console.WriteLine("El importe debe ser mayor o igual a cero.");
                             continue;
                         }
+                      
 
                     }
                     else if(tecla1.Key == ConsoleKey.H)
@@ -154,8 +155,7 @@ namespace A896103.ACTIVIDAD03CAI
                             Console.WriteLine("El importe debe ser númerico.");
                             continue;
                         }
-
-                        if (haber < 0)
+                        else if (haber < 0)
                         {
                             Console.WriteLine("El importe debe ser mayor o igual a cero.");
                             continue;
@@ -163,9 +163,10 @@ namespace A896103.ACTIVIDAD03CAI
 
                     }
                     ok = true;
-                }
 
-               
+                   
+
+                }
                 Console.WriteLine("Seleccione 'I' para cargar una otra cuenta y respetar la igualdad DEBE = HABER o cualquier tecla para seguir.");
                 var tecla = Console.ReadKey(intercept: true);
                 seguir = tecla.Key == ConsoleKey.I;
@@ -174,6 +175,7 @@ namespace A896103.ACTIVIDAD03CAI
                     Console.WriteLine("No se respeta la igualdad contable DEBE = HABER.");
                     continue;
                 }
+
 
             } while (seguir);
 
