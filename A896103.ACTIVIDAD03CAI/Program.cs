@@ -89,13 +89,13 @@ namespace A896103.ACTIVIDAD03CAI
                     while (!reader.EndOfStream)
                     {
                         var linea = reader.ReadLine();
-                        var pl = PlanDeCuentas.Parse(linea);
                         if (linea == "Codigo|Nombre|Tipo")
                         {
                             continue;
                         }
                         else
                         {
+                            var pl = PlanDeCuentas.Parse(linea);
                             plan.Add(pl);
                             Console.WriteLine($"{pl.CodigoCuenta}|{pl.NombreCuenta}|{pl.Tipo}");
                         }
@@ -113,7 +113,7 @@ namespace A896103.ACTIVIDAD03CAI
         {
 
             Console.WriteLine("Se cargaran los asientos en el archivo Diario.txt");
-            string ruta = "Diario.txt";
+            string ruta = @"Diario.txt";
             if (File.Exists(ruta))
             {
                 Console.WriteLine("¿Desea sobreescribirlo? [S/N]");
