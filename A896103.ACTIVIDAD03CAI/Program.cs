@@ -11,7 +11,7 @@ namespace A896103.ACTIVIDAD03CAI
     {
 
         static List<PlanDeCuentas> plan = new List<PlanDeCuentas>();
-        static Dictionary<int, Asiento> asientos = new Dictionary<int, Asiento>();
+        static Dictionary<int, LibroDiario> asientos = new Dictionary<int, LibroDiario>();
 
         /*A partir de los asientos ingresados por el usuario, una aplicación debe generar/actualizar un
                archivo de texto llamado “Diario.txt” con el siguiente formato por línea:
@@ -130,8 +130,12 @@ namespace A896103.ACTIVIDAD03CAI
             {
                 foreach (var asiento in asientos)
                 {
-                    writer.WriteLine($"{asiento.Value.NroAsiento}|{asiento.Value.Fecha}|{asiento.Value.CodigoCuenta}|" +
-                        $"{asiento.Value.Debe}|{asiento.Value.Haber}");
+                    writer.WriteLine("NroAsiento|Fecha|CodigoCuenta|Debe|Haber");
+                    foreach (var asi in asientos)
+                    {
+                        writer.WriteLine($"{asiento.Value.NroAsiento}|{asiento.Value.Fecha}|{asiento.Value.CodigoCuenta}|" +
+                               $"{asiento.Value.Debe}|{asiento.Value.Haber}");
+                    }
                 }
                 writer.Close();
             }
@@ -147,7 +151,7 @@ namespace A896103.ACTIVIDAD03CAI
             bool seguir = true;
             while (seguir)
             {
-                var asiento = Asiento.Ingreso();
+                var asiento = LibroDiario.Ingreso();
                 if (asientos.ContainsKey(asiento.NroAsiento))
                 {
                     Console.WriteLine("El número de asiento ingresado ya exite.");

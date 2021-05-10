@@ -8,9 +8,10 @@ using System.Globalization;
 
 namespace A896103.ACTIVIDAD03CAI
 {
-    internal class Asiento
+    internal class LibroDiario
     {
-        private Asiento(int nro, DateTime fecha, int codigo, decimal debe, decimal haber)
+        static List<LibroDiario> asientos = new List<LibroDiario>();
+        private LibroDiario(int nro, DateTime fecha, int codigo, decimal debe, decimal haber)
         {
             NroAsiento = nro;
             Fecha = fecha;
@@ -26,7 +27,7 @@ namespace A896103.ACTIVIDAD03CAI
         public decimal Haber { get; set; }
  
 
-        internal static Asiento Ingreso()
+        internal static LibroDiario Ingreso()
         {
             Console.WriteLine();
             Console.WriteLine("Nuevo asiento.");
@@ -173,7 +174,7 @@ namespace A896103.ACTIVIDAD03CAI
 
             } while (seguir);
 
-            return new Asiento(asiento, fecha, codigo, debe, haber);
+            return new LibroDiario(asiento, fecha, codigo, debe, haber);
         }
 
     }
