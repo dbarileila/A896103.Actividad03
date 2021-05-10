@@ -137,9 +137,10 @@ namespace A896103.ACTIVIDAD03CAI
       
                         
                         writer.WriteLine($"{asiento.Value.NroAsiento}|{asiento.Value.Fecha}|{asiento.Value.CodigoCuenta}|" +
-                         $"{asiento.Value.Debe}|{asiento.Value.Haber}");
+                         $"{asiento.Value.Debe}|{asiento.Value.Haber}\n");
 
-                        
+
+
                     }
                 }
                 writer.Close();
