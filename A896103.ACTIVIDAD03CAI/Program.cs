@@ -130,11 +130,16 @@ namespace A896103.ACTIVIDAD03CAI
             {
                 foreach (var asiento in asientos)
                 {
+                    //NOTA: Cada vez que agrego un nuevo ASIENTO me aparece esto. Yo quería ponerlo solo en la cabecera sin que se repita.
                     writer.WriteLine("NroAsiento|Fecha|CodigoCuenta|Debe|Haber");
                     foreach (var asi in asientos)
                     {
+      
+                        
                         writer.WriteLine($"{asiento.Value.NroAsiento}|{asiento.Value.Fecha}|{asiento.Value.CodigoCuenta}|" +
-                               $"{asiento.Value.Debe}|{asiento.Value.Haber}");
+                         $"{asiento.Value.Debe}|{asiento.Value.Haber}");
+
+                        
                     }
                 }
                 writer.Close();

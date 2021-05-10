@@ -158,8 +158,12 @@ namespace A896103.ACTIVIDAD03CAI
 
                     }
                     ok = true;
-
-                   
+                    //NOTA: Cuando agrego una cuenta para repetar la igualdad contable
+                    //pisa la misma linea y no lo escribe debajo. Entiendo que para eso debería usar un foreach pero no logro
+                    //entender en donde debería aplicarlo.
+                    Console.WriteLine("Seleccione 'I' para cargar una otra cuenta y respetar la igualdad DEBE = HABER o cualquier tecla para seguir.");
+                    var tecla = Console.ReadKey(intercept: true);
+                    seguir = tecla.Key == ConsoleKey.I;
 
                 }
 
@@ -181,9 +185,9 @@ namespace A896103.ACTIVIDAD03CAI
                     }
 
                 }
-                Console.WriteLine("Seleccione 'I' para cargar una otra cuenta y respetar la igualdad DEBE = HABER o cualquier tecla para seguir.");
-                var tecla = Console.ReadKey(intercept: true);
-                seguir = tecla.Key == ConsoleKey.I;
+                
+               
+                
                 if (totaldeldebe != totaldehaber)
                 {
                     Console.WriteLine("No se respeta la igualdad contable DEBE = HABER.");
