@@ -54,7 +54,7 @@ namespace A896103.ACTIVIDAD03CAI
                 ok = true;
             }
 
-            var fecha = new DateTime();
+            var fecha = new DateTime(); 
             ok = false;
             while (!ok)
             {
@@ -69,12 +69,12 @@ namespace A896103.ACTIVIDAD03CAI
                     continue;
                 }
 
-                if (fecha > DateTime.Today)
+                if (fecha > DateTime.Now)
                 {
                     Console.WriteLine("La fecha ingresada debe ser menor a la actual.");
                     continue;
                 }
-
+                
                 ok = true;
             }
 
@@ -118,9 +118,6 @@ namespace A896103.ACTIVIDAD03CAI
                     {
                         Console.WriteLine();
                         Console.WriteLine("DEBE");
-                        Console.WriteLine(" --> Activo (+).");
-                        Console.WriteLine(" --> Pasivo (-).");
-                        Console.WriteLine(" --> PN     (-).");
                         Console.WriteLine();
                         Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
 
@@ -143,9 +140,6 @@ namespace A896103.ACTIVIDAD03CAI
                     {
                         Console.WriteLine();
                         Console.WriteLine("HABER");
-                        Console.WriteLine(" --> Activo (-).");
-                        Console.WriteLine(" --> Pasivo (+).");
-                        Console.WriteLine(" --> PN     (+).");
                         Console.WriteLine();
                         Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
                         Console.Write("Importe: $ ");

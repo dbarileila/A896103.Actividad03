@@ -133,7 +133,9 @@ namespace A896103.ACTIVIDAD03CAI
                     writer.WriteLine($"{asiento.Value.NroAsiento}|{asiento.Value.Fecha}|{asiento.Value.CodigoCuenta}|" +
                         $"{asiento.Value.Debe}|{asiento.Value.Haber}");
                 }
+                writer.Close();
             }
+            
 
             Console.WriteLine("El asiento se ha cargado exitosamente en el archivo Diario.txt");
 
