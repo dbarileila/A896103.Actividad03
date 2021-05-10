@@ -121,7 +121,7 @@ namespace A896103.ACTIVIDAD03CAI
                         Console.WriteLine();
                         Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
 
-                        Console.Write("Importe: $ ");
+                        Console.Write("$ ");
                         var ingreso = Console.ReadLine();
                         if (!decimal.TryParse(ingreso, out debe))
                         {
