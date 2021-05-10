@@ -124,17 +124,17 @@ namespace A896103.ACTIVIDAD03CAI
 
                         Console.Write("$ ");
                         var ingreso = Console.ReadLine();
-                        if (!decimal.TryParse(ingreso, out debe))
-                        {
-                            Console.WriteLine("El importe debe ser númerico.");
-                            continue;
-                        }
-                        else if (debe < 0)
-                        {
-                            Console.WriteLine("El importe debe ser mayor o igual a cero.");
-                            continue;
-                        }
-                      
+                            if (!decimal.TryParse(ingreso, out debe))
+                            {
+                                Console.WriteLine("El importe debe ser númerico.");
+                                continue;
+                            }
+                            else if (debe < 0)
+                            {
+                                Console.WriteLine("El importe debe ser mayor o igual a cero.");
+                                continue;
+                            }
+                        
 
                     }
                     else if(tecla1.Key == ConsoleKey.H)
@@ -145,16 +145,16 @@ namespace A896103.ACTIVIDAD03CAI
                         Console.WriteLine("Formato válido a ingresar: decimal (ej: 100.00)");
                         Console.Write("Importe: $ ");
                         var ingreso = Console.ReadLine();
-                        if (!decimal.TryParse(ingreso, out haber))
-                        {
-                            Console.WriteLine("El importe debe ser númerico.");
-                            continue;
-                        }
-                        else if (haber < 0)
-                        {
-                            Console.WriteLine("El importe debe ser mayor o igual a cero.");
-                            continue;
-                        }
+                                if (!decimal.TryParse(ingreso, out haber))
+                                {
+                                    Console.WriteLine("El importe debe ser númerico.");
+                                    continue;
+                                }
+                                else if (haber < 0)
+                                {
+                                    Console.WriteLine("El importe debe ser mayor o igual a cero.");
+                                    continue;
+                                }
 
                     }
                     ok = true;
@@ -162,10 +162,29 @@ namespace A896103.ACTIVIDAD03CAI
                    
 
                 }
+
+                decimal totaldeldebe = 0; 
+                foreach(LibroDiario libro in asientos)
+                {
+                    if (libro.NroAsiento == asiento)
+                    {
+                        totaldeldebe += libro.Debe;
+                    }
+                }
+
+                decimal totaldehaber = 0;
+                foreach(LibroDiario libro in asientos)
+                {
+                    if(libro.NroAsiento == asiento)
+                    {
+                        totaldehaber += libro.Haber;
+                    }
+
+                }
                 Console.WriteLine("Seleccione 'I' para cargar una otra cuenta y respetar la igualdad DEBE = HABER o cualquier tecla para seguir.");
                 var tecla = Console.ReadKey(intercept: true);
                 seguir = tecla.Key == ConsoleKey.I;
-                if (debe != haber)
+                if (totaldeldebe != totaldehaber)
                 {
                     Console.WriteLine("No se respeta la igualdad contable DEBE = HABER.");
                     continue;
