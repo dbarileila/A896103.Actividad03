@@ -137,7 +137,13 @@ namespace A896103.ACTIVIDAD03CAI
                         
 
                     }
-                    else if(tecla1.Key == ConsoleKey.H)
+                    else
+                    {
+                        Console.WriteLine("Debe ingresar primero cuentas en el debe");
+                        break;
+                    }
+
+                    if(tecla1.Key == ConsoleKey.H)
                     {
                         Console.WriteLine();
                         Console.WriteLine("HABER");
